@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500">
+  <rect width="1200" height="1500" fill="#E8D5B5"/>
+  <circle cx="950" cy="250" r="320" fill="#B4652A" opacity="0.25"/>
+  <circle cx="150" cy="1300" r="260" fill="#B4652A" opacity="0.18"/>
+  <rect x="120" y="560" width="960" height="380" fill="none" stroke="#5C3D2E" stroke-width="10"/>
+  <text x="600" y="800" text-anchor="middle" font-family="Georgia, serif" font-size="220" font-weight="bold" fill="#5C3D2E" letter-spacing="12">BW</text>
+  <text x="600" y="1060" text-anchor="middle" font-family="Georgia, serif" font-size="52" fill="#5C3D2E">BOHO WEDDING INVITATION SUITE</text>
+  <text x="600" y="1140" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" fill="#5C3D2E" opacity="0.75">SAMPLE PREVIEW — Quay</text>
+  <rect x="330" y="1220" width="540" height="90" rx="45" fill="#B4652A"/>
+  <text x="600" y="1278" text-anchor="middle" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#E8D5B5">quay.example</text>
+</svg>
