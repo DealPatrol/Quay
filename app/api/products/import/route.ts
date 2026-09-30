@@ -2,8 +2,8 @@ export const dynamic = "force-dynamic";
 import { NextResponse } from "next/server";
 import fs from "node:fs";
 import path from "node:path";
-import { verifyAdminSession } from "@/lib/session";
 import { store, uid } from "@/lib/store";
+import { isAdminRequest } from "@/lib/admin-auth";
 import type { Product } from "@/lib/types";
 
 /**
@@ -85,17 +85,8 @@ function safeBasename(url: string, fallback: string): string {
   }
 }
 
-async function authed(req: Request): Promise<boolean> {
-  const cookie = req.headers.get("cookie") || "";
-  const m = cookie.match(/(?:^|;\s*)quay_admin=([^;]*)/);
-  return !!(
-    (m && (await verifyAdminSession(decodeURIComponent(m[1])))) ||
-    (!process.env.ADMIN_PASSWORD_HASH && /(?:^|;\s*)quay_demo=/.test(cookie))
-  );
-}
-
 export async function POST(req: Request) {
-  if (!(await authed(req))) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  if (!(await isAdminRequest(req))) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
 
   let csv = "";
   try {

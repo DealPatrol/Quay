@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
 import { NextResponse } from "next/server";
 import { store, uid } from "@/lib/store";
+import { isAdminRequest } from "@/lib/admin-auth";
 import type { Product } from "@/lib/types";
 
 export async function GET() {
@@ -8,6 +9,8 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
+  if (!(await isAdminRequest(req)))
+    return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   const body = await req.json();
   if (!body.name || !body.slug || typeof body.price !== "number") {
     return NextResponse.json({ error: "name, slug, and numeric price are required" }, { status: 400 });
