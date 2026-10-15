@@ -287,3 +287,21 @@ windows (VC 30d / ATC 14d / IC 7d).
 - **Success page** — fires the browser Purchase event with the same `event_id`
   the server used for CAPI, and shows up to 3 "Frequently bought together"
   products.
+
+## Facebook: checkout link as first comment
+
+Dashboard → **Facebook** lets you put a product's checkout link in the
+comments of your Facebook posts (links in comments get more reach than links
+in the post body).
+
+- **No setup:** pick a product, edit the comment text (`{link}`, `{name}`,
+  `{price}`), click **Copy comment**, paste it under your post. Works for Pages,
+  personal profiles and Groups.
+- **Automated (Pages only):** set `FB_PAGE_ID` and `FB_PAGE_ACCESS_TOKEN` (a
+  long-lived *Page* access token with `pages_manage_posts`,
+  `pages_manage_engagement`, `pages_read_engagement`, `pages_show_list`).
+  Then you can **Publish to Page** with "Add checkout link as first comment",
+  or paste an existing Page post URL/id and **Add checkout comment**. Results
+  (post id, comment id, status/errors) are stored in history (`fb_posts` table
+  on Postgres — re-run `scripts/schema.sql`).
+- Personal profiles and Groups can't be commented on via the Graph API — use Copy.

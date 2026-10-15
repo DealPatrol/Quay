@@ -16,6 +16,7 @@ import type {
   Affiliate,
   Discount,
   DownloadRecord,
+  FbPost,
   Order,
   Product,
   Referral,
@@ -212,6 +213,22 @@ export function createPostgresAdapter(): DbAdapter {
             data: a,
           })),
           ["id", "email", "updated_at"]
+        ),
+    },
+    fbPosts: {
+      all: () => loadAll<FbPost>("fb_posts", "ORDER BY created_at DESC"),
+      save: (items) =>
+        replaceAll(
+          "fb_posts",
+          items.map((f) => ({
+            key: [
+              ["id", f.id],
+              ["product_id", f.productId],
+              ["created_at", f.createdAt],
+            ],
+            data: f,
+          })),
+          ["id", "product_id", "created_at"]
         ),
     },
     settings: {

@@ -6,6 +6,7 @@ import type {
   Affiliate,
   Discount,
   DownloadRecord,
+  FbPost,
   Order,
   Product,
   Referral,
@@ -41,6 +42,7 @@ export interface DbAdapter {
   affiliates: Collection<Affiliate>;
   referrals: Collection<Referral>;
   abandoned: Collection<AbandonedCart>;
+  fbPosts: Collection<FbPost>;
   settings: {
     get(): Promise<Settings>;
     save(s: Settings): Promise<void>;
@@ -100,6 +102,7 @@ function createJsonAdapter(): DbAdapter {
     affiliates: coll<Affiliate>("affiliates.json"),
     referrals: coll<Referral>("referrals.json"),
     abandoned: coll<AbandonedCart>("abandoned.json"),
+    fbPosts: coll<FbPost>("fb_posts.json"),
     settings: {
       get: async () => ({ ...DEFAULT_SETTINGS, ...read<Partial<Settings>>("settings.json", {}) }),
       save: async (s) => writeSafe("settings.json", s),

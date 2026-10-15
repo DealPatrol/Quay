@@ -93,3 +93,12 @@ CREATE TABLE IF NOT EXISTS abandoned (
 );
 CREATE INDEX IF NOT EXISTS idx_abandoned_email ON abandoned (email);
 CREATE INDEX IF NOT EXISTS idx_abandoned_updated ON abandoned (updated_at DESC);
+
+-- Facebook posts + checkout-link first comments (dashboard → Facebook).
+CREATE TABLE IF NOT EXISTS fb_posts (
+  id         TEXT PRIMARY KEY,
+  product_id TEXT NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL,
+  data       JSONB NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_fb_posts_created ON fb_posts (created_at DESC);

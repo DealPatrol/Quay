@@ -147,3 +147,18 @@ export interface AbandonedCart {
   remindedAt?: string;
   recoveredOrderId?: string; // set when the buyer later completes checkout
 }
+
+/** A Facebook post made/tracked via Quay, with its checkout-link first comment. */
+export interface FbPost {
+  id: string;
+  productId: string;
+  postId?: string; // Graph id "{pageId}_{postId}"
+  postUrl?: string;
+  message?: string; // post text (when published via Quay)
+  commentText: string;
+  commentId?: string;
+  status: "published" | "commented" | "comment_failed" | "failed";
+  error?: string;
+  createdAt: string;
+  updatedAt: string;
+}
